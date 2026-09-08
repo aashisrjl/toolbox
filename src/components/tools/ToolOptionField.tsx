@@ -22,6 +22,12 @@ export type OptionField =
       step?: number;
       suffix?: string;
     }
+  | {
+      kind: "text";
+      name: string;
+      label: string;
+      placeholder?: string;
+    }
   | { kind: "toggle"; name: string; label: string };
 
 interface Props {
@@ -56,11 +62,7 @@ export function ToolOptionField({ field, value, onChange }: Props) {
       </span>
 
       {field.kind === "select" && (
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={inputClass}
-        >
+        <select value={value} onChange={(e) => onChange(e.target.value)} className={inputClass}>
           {field.options.map((o) => (
             <option key={o.value} value={o.value}>
               {o.label}
@@ -75,6 +77,16 @@ export function ToolOptionField({ field, value, onChange }: Props) {
           value={value}
           min={field.min}
           max={field.max}
+          placeholder={field.placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          className={inputClass}
+        />
+      )}
+
+      {field.kind === "text" && (
+        <input
+          type="text"
+          value={value}
           placeholder={field.placeholder}
           onChange={(e) => onChange(e.target.value)}
           className={inputClass}

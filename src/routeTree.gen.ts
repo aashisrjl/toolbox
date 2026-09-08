@@ -10,11 +10,113 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SlugRouteImport } from './routes/$slug'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DownloadFacebookReelsRouteImport } from './routes/download-facebook-reels'
+import { Route as DownloadInstagramVideosRouteImport } from './routes/download-instagram-videos'
+import { Route as DownloadTiktokVideosRouteImport } from './routes/download-tiktok-videos'
+import { Route as DownloadYoutubeVideosRouteImport } from './routes/download-youtube-videos'
+import { Route as ImageCollageRouteImport } from './routes/image-collage'
+import { Route as ImageCollegeRouteImport } from './routes/image-college'
+import { Route as ImageToPdfRouteImport } from './routes/image-to-pdf'
+import { Route as MergePdfRouteImport } from './routes/merge-pdf'
+import { Route as PdfToWordRouteImport } from './routes/pdf-to-word'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ProtectPdfRouteImport } from './routes/protect-pdf'
+import { Route as QrCodeGeneratorRouteImport } from './routes/qr-code-generator'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as WordToPdfRouteImport } from './routes/word-to-pdf'
 import { Route as ToolsSlugRouteImport } from './routes/tools/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadFacebookReelsRoute = DownloadFacebookReelsRouteImport.update({
+  id: '/download-facebook-reels',
+  path: '/download-facebook-reels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadInstagramVideosRoute = DownloadInstagramVideosRouteImport.update({
+  id: '/download-instagram-videos',
+  path: '/download-instagram-videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadTiktokVideosRoute = DownloadTiktokVideosRouteImport.update({
+  id: '/download-tiktok-videos',
+  path: '/download-tiktok-videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadYoutubeVideosRoute = DownloadYoutubeVideosRouteImport.update({
+  id: '/download-youtube-videos',
+  path: '/download-youtube-videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageCollageRoute = ImageCollageRouteImport.update({
+  id: '/image-collage',
+  path: '/image-collage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageCollegeRoute = ImageCollegeRouteImport.update({
+  id: '/image-college',
+  path: '/image-college',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageToPdfRoute = ImageToPdfRouteImport.update({
+  id: '/image-to-pdf',
+  path: '/image-to-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MergePdfRoute = MergePdfRouteImport.update({
+  id: '/merge-pdf',
+  path: '/merge-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PdfToWordRoute = PdfToWordRouteImport.update({
+  id: '/pdf-to-word',
+  path: '/pdf-to-word',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectPdfRoute = ProtectPdfRouteImport.update({
+  id: '/protect-pdf',
+  path: '/protect-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QrCodeGeneratorRoute = QrCodeGeneratorRouteImport.update({
+  id: '/qr-code-generator',
+  path: '/qr-code-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WordToPdfRoute = WordToPdfRouteImport.update({
+  id: '/word-to-pdf',
+  path: '/word-to-pdf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsSlugRoute = ToolsSlugRouteImport.update({
@@ -25,27 +127,153 @@ const ToolsSlugRoute = ToolsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/download-facebook-reels': typeof DownloadFacebookReelsRoute
+  '/download-instagram-videos': typeof DownloadInstagramVideosRoute
+  '/download-tiktok-videos': typeof DownloadTiktokVideosRoute
+  '/download-youtube-videos': typeof DownloadYoutubeVideosRoute
+  '/image-collage': typeof ImageCollageRoute
+  '/image-college': typeof ImageCollegeRoute
+  '/image-to-pdf': typeof ImageToPdfRoute
+  '/merge-pdf': typeof MergePdfRoute
+  '/pdf-to-word': typeof PdfToWordRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/protect-pdf': typeof ProtectPdfRoute
+  '/qr-code-generator': typeof QrCodeGeneratorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/word-to-pdf': typeof WordToPdfRoute
   '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/download-facebook-reels': typeof DownloadFacebookReelsRoute
+  '/download-instagram-videos': typeof DownloadInstagramVideosRoute
+  '/download-tiktok-videos': typeof DownloadTiktokVideosRoute
+  '/download-youtube-videos': typeof DownloadYoutubeVideosRoute
+  '/image-collage': typeof ImageCollageRoute
+  '/image-college': typeof ImageCollegeRoute
+  '/image-to-pdf': typeof ImageToPdfRoute
+  '/merge-pdf': typeof MergePdfRoute
+  '/pdf-to-word': typeof PdfToWordRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/protect-pdf': typeof ProtectPdfRoute
+  '/qr-code-generator': typeof QrCodeGeneratorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/word-to-pdf': typeof WordToPdfRoute
   '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/download-facebook-reels': typeof DownloadFacebookReelsRoute
+  '/download-instagram-videos': typeof DownloadInstagramVideosRoute
+  '/download-tiktok-videos': typeof DownloadTiktokVideosRoute
+  '/download-youtube-videos': typeof DownloadYoutubeVideosRoute
+  '/image-collage': typeof ImageCollageRoute
+  '/image-college': typeof ImageCollegeRoute
+  '/image-to-pdf': typeof ImageToPdfRoute
+  '/merge-pdf': typeof MergePdfRoute
+  '/pdf-to-word': typeof PdfToWordRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/protect-pdf': typeof ProtectPdfRoute
+  '/qr-code-generator': typeof QrCodeGeneratorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/word-to-pdf': typeof WordToPdfRoute
   '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tools/$slug'
+  fullPaths:
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/contact'
+    | '/download-facebook-reels'
+    | '/download-instagram-videos'
+    | '/download-tiktok-videos'
+    | '/download-youtube-videos'
+    | '/image-collage'
+    | '/image-college'
+    | '/image-to-pdf'
+    | '/merge-pdf'
+    | '/pdf-to-word'
+    | '/privacy-policy'
+    | '/protect-pdf'
+    | '/qr-code-generator'
+    | '/terms-and-conditions'
+    | '/word-to-pdf'
+    | '/tools/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tools/$slug'
-  id: '__root__' | '/' | '/tools/$slug'
+  to:
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/contact'
+    | '/download-facebook-reels'
+    | '/download-instagram-videos'
+    | '/download-tiktok-videos'
+    | '/download-youtube-videos'
+    | '/image-collage'
+    | '/image-college'
+    | '/image-to-pdf'
+    | '/merge-pdf'
+    | '/pdf-to-word'
+    | '/privacy-policy'
+    | '/protect-pdf'
+    | '/qr-code-generator'
+    | '/terms-and-conditions'
+    | '/word-to-pdf'
+    | '/tools/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/contact'
+    | '/download-facebook-reels'
+    | '/download-instagram-videos'
+    | '/download-tiktok-videos'
+    | '/download-youtube-videos'
+    | '/image-collage'
+    | '/image-college'
+    | '/image-to-pdf'
+    | '/merge-pdf'
+    | '/pdf-to-word'
+    | '/privacy-policy'
+    | '/protect-pdf'
+    | '/qr-code-generator'
+    | '/terms-and-conditions'
+    | '/word-to-pdf'
+    | '/tools/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugRoute: typeof SlugRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DownloadFacebookReelsRoute: typeof DownloadFacebookReelsRoute
+  DownloadInstagramVideosRoute: typeof DownloadInstagramVideosRoute
+  DownloadTiktokVideosRoute: typeof DownloadTiktokVideosRoute
+  DownloadYoutubeVideosRoute: typeof DownloadYoutubeVideosRoute
+  ImageCollageRoute: typeof ImageCollageRoute
+  ImageCollegeRoute: typeof ImageCollegeRoute
+  ImageToPdfRoute: typeof ImageToPdfRoute
+  MergePdfRoute: typeof MergePdfRoute
+  PdfToWordRoute: typeof PdfToWordRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ProtectPdfRoute: typeof ProtectPdfRoute
+  QrCodeGeneratorRoute: typeof QrCodeGeneratorRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  WordToPdfRoute: typeof WordToPdfRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
 }
 
@@ -56,6 +284,125 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download-facebook-reels': {
+      id: '/download-facebook-reels'
+      path: '/download-facebook-reels'
+      fullPath: '/download-facebook-reels'
+      preLoaderRoute: typeof DownloadFacebookReelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download-instagram-videos': {
+      id: '/download-instagram-videos'
+      path: '/download-instagram-videos'
+      fullPath: '/download-instagram-videos'
+      preLoaderRoute: typeof DownloadInstagramVideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download-tiktok-videos': {
+      id: '/download-tiktok-videos'
+      path: '/download-tiktok-videos'
+      fullPath: '/download-tiktok-videos'
+      preLoaderRoute: typeof DownloadTiktokVideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download-youtube-videos': {
+      id: '/download-youtube-videos'
+      path: '/download-youtube-videos'
+      fullPath: '/download-youtube-videos'
+      preLoaderRoute: typeof DownloadYoutubeVideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-collage': {
+      id: '/image-collage'
+      path: '/image-collage'
+      fullPath: '/image-collage'
+      preLoaderRoute: typeof ImageCollageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-college': {
+      id: '/image-college'
+      path: '/image-college'
+      fullPath: '/image-college'
+      preLoaderRoute: typeof ImageCollegeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-to-pdf': {
+      id: '/image-to-pdf'
+      path: '/image-to-pdf'
+      fullPath: '/image-to-pdf'
+      preLoaderRoute: typeof ImageToPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merge-pdf': {
+      id: '/merge-pdf'
+      path: '/merge-pdf'
+      fullPath: '/merge-pdf'
+      preLoaderRoute: typeof MergePdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pdf-to-word': {
+      id: '/pdf-to-word'
+      path: '/pdf-to-word'
+      fullPath: '/pdf-to-word'
+      preLoaderRoute: typeof PdfToWordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protect-pdf': {
+      id: '/protect-pdf'
+      path: '/protect-pdf'
+      fullPath: '/protect-pdf'
+      preLoaderRoute: typeof ProtectPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qr-code-generator': {
+      id: '/qr-code-generator'
+      path: '/qr-code-generator'
+      fullPath: '/qr-code-generator'
+      preLoaderRoute: typeof QrCodeGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/word-to-pdf': {
+      id: '/word-to-pdf'
+      path: '/word-to-pdf'
+      fullPath: '/word-to-pdf'
+      preLoaderRoute: typeof WordToPdfRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools/$slug': {
@@ -70,6 +417,23 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugRoute: SlugRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DownloadFacebookReelsRoute: DownloadFacebookReelsRoute,
+  DownloadInstagramVideosRoute: DownloadInstagramVideosRoute,
+  DownloadTiktokVideosRoute: DownloadTiktokVideosRoute,
+  DownloadYoutubeVideosRoute: DownloadYoutubeVideosRoute,
+  ImageCollageRoute: ImageCollageRoute,
+  ImageCollegeRoute: ImageCollegeRoute,
+  ImageToPdfRoute: ImageToPdfRoute,
+  MergePdfRoute: MergePdfRoute,
+  PdfToWordRoute: PdfToWordRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ProtectPdfRoute: ProtectPdfRoute,
+  QrCodeGeneratorRoute: QrCodeGeneratorRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
+  WordToPdfRoute: WordToPdfRoute,
   ToolsSlugRoute: ToolsSlugRoute,
 }
 export const routeTree = rootRouteImport

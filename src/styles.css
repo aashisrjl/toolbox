@@ -98,11 +98,8 @@
   --sidebar-border: oklch(0.32 0.025 262);
   --sidebar-ring: oklch(0.82 0.17 175);
 
-  --gradient-hero: radial-gradient(
-      120% 90% at 15% 0%,
-      oklch(0.4 0.11 190 / 0.45) 0%,
-      transparent 60%
-    ),
+  --gradient-hero:
+    radial-gradient(120% 90% at 15% 0%, oklch(0.4 0.11 190 / 0.45) 0%, transparent 60%),
     radial-gradient(100% 80% at 90% 10%, oklch(0.42 0.1 95 / 0.3) 0%, transparent 55%);
   --gradient-accent: linear-gradient(
     100deg,
@@ -111,9 +108,9 @@
     oklch(0.8 0.15 88) 100%
   );
   --shadow-panel: 0 24px 60px -30px oklch(0 0 0 / 0.8);
-  --shadow-glow: 0 0 0 1px oklch(0.82 0.17 175 / 0.25), 0 20px 50px -25px oklch(0.82 0.17 175 / 0.5);
+  --shadow-glow:
+    0 0 0 1px oklch(0.82 0.17 175 / 0.25), 0 20px 50px -25px oklch(0.82 0.17 175 / 0.5);
 }
-
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
@@ -159,10 +156,66 @@
     font-family: var(--font-body);
     background-color: var(--color-background);
     color: var(--color-foreground);
+    overflow-x: hidden;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+}
+
+@layer utilities {
+  .bg-grid-mesh {
+    background-size: 32px 32px;
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 3.5%) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 3.5%) 1px, transparent 1px);
+  }
+
+  .bg-radial-beam {
+    background: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      oklch(0.82 0.17 175 / 0.16) 0%,
+      oklch(0.68 0.14 240 / 0.08) 50%,
+      transparent 80%
+    );
+  }
+
+  .glass-panel {
+    background: oklch(0.2 0.02 262 / 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid oklch(1 0 0 / 8%);
+  }
+
+  .glass-card-hover {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-2px);
+    border-color: oklch(0.82 0.17 175 / 0.4);
+    box-shadow:
+      0 12px 30px -10px oklch(0 0 0 / 0.6),
+      0 0 20px -5px oklch(0.82 0.17 175 / 0.2);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 4s ease-in-out infinite;
 }

@@ -54,8 +54,39 @@ export function RemoveImageBackground({ endpoint }: { endpoint: string }) {
       />
 
       {preview && (
-        <div className="overflow-hidden rounded-2xl border border-border bg-card p-4">
-          <img src={preview} alt="Selected image preview" className="mx-auto max-h-72 rounded-xl" />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card p-4 text-center">
+            <span className="mb-2 block text-xs font-medium text-muted-foreground">Original</span>
+            <img
+              src={preview}
+              alt="Original input"
+              className="mx-auto max-h-72 rounded-xl object-contain"
+            />
+          </div>
+
+          {done && job.download_url ? (
+            <div
+              className="overflow-hidden rounded-2xl border border-border p-4 text-center"
+              style={{
+                backgroundImage:
+                  "repeating-conic-gradient(rgba(128, 128, 128, 0.15) 0% 25%, transparent 0% 50%)",
+                backgroundSize: "16px 16px",
+              }}
+            >
+              <span className="mb-2 block text-xs font-medium text-muted-foreground">
+                Transparent Result
+              </span>
+              <img
+                src={resolveDownloadUrl(job.download_url)}
+                alt="Background removed result"
+                className="mx-auto max-h-72 rounded-xl object-contain"
+              />
+            </div>
+          ) : (
+            <div className="hidden sm:flex items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 p-8 text-center text-xs text-muted-foreground">
+              {isRunning ? "Removing background…" : "Result preview will appear here"}
+            </div>
+          )}
         </div>
       )}
 

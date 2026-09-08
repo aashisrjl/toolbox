@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_URL, DEFAULT_OG_IMAGE, TWITTER_HANDLE, buildWebsiteSchema } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -77,12 +78,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ToolsHub" },
-      { name: "description", content: "Media utilities for image, video and audio files." },
-      { property: "og:title", content: "ToolsHub" },
-      { property: "og:description", content: "Media utilities for image, video and audio files." },
+      { title: "Toolbox — Free Private Media & Document Tools" },
+      {
+        name: "description",
+        content:
+          "High-speed private media utilities: convert, compress, merge, trim, and edit videos, audio, images, and PDF documents directly in your browser without accounts.",
+      },
+      {
+        name: "keywords",
+        content:
+          "toolbox, online media tools, pdf tools, video converter, audio converter, image compressor, background removal, photo collage, youtube downloader, tiktok downloader, facebook downloader",
+      },
+      { name: "author", content: "Aashis Rijal" },
+      { name: "creator", content: "Aashis Rijal" },
+      { name: "publisher", content: "Toolbox" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:site_name", content: "Toolbox" },
+      { property: "og:title", content: "Toolbox — Free Private Media & Document Tools" },
+      {
+        property: "og:description",
+        content:
+          "High-speed private media utilities: convert, compress, merge, trim, and edit videos, audio, images, and PDF documents without clutter.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: TWITTER_HANDLE },
+      { name: "twitter:creator", content: TWITTER_HANDLE },
+      { name: "twitter:title", content: "Toolbox — Free Private Media & Document Tools" },
+      {
+        name: "twitter:description",
+        content:
+          "High-speed private media utilities: convert, compress, merge, trim, and edit videos, audio, images, and PDF documents.",
+      },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
     links: [
       {
@@ -95,7 +125,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap",
       },
+      { rel: "icon", type: "image/png", href: "/tools-logo.png" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/tools-logo.png" },
+      { rel: "canonical", href: SITE_URL },
     ],
   }),
 
@@ -107,11 +140,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>
@@ -124,6 +157,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebsiteSchema()) }}
+      />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

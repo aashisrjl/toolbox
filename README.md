@@ -39,14 +39,14 @@ Important
 Don't make:
 
 main.py
- ├── YouTube
- ├── Instagram
- ├── TikTok
- ├── Image
- ├── Video
- ├── PDF
- ├── Audio
- └── everything else
+├── YouTube
+├── Instagram
+├── TikTok
+├── Image
+├── Video
+├── PDF
+├── Audio
+└── everything else
 
 Instead:
 
@@ -65,75 +65,75 @@ I'd start with this:
 toolshub/
 │
 ├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── lib/
-│   │   ├── types/
-│   │   └── App.tsx
-│   │
-│   ├── package.json
-│   └── vite.config.ts
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── layouts/
+│ │ ├── hooks/
+│ │ ├── services/
+│ │ ├── lib/
+│ │ ├── types/
+│ │ └── App.tsx
+│ │
+│ ├── package.json
+│ └── vite.config.ts
 │
 ├── backend/
-│   ├── app/
-│   │   ├── main.py
-│   │   │
-│   │   ├── core/
-│   │   │   ├── config.py
-│   │   │   ├── database.py
-│   │   │   └── security.py
-│   │   │
-│   │   ├── routers/
-│   │   │   ├── health.py
-│   │   │   ├── youtube.py
-│   │   │   ├── instagram.py
-│   │   │   ├── tiktok.py
-│   │   │   ├── image.py
-│   │   │   ├── video.py
-│   │   │   ├── audio.py
-│   │   │   └── jobs.py
-│   │   │
-│   │   ├── services/
-│   │   │   ├── youtube_service.py
-│   │   │   ├── instagram_service.py
-│   │   │   ├── tiktok_service.py
-│   │   │   ├── image_service.py
-│   │   │   ├── video_service.py
-│   │   │   └── audio_service.py
-│   │   │
-│   │   ├── workers/
-│   │   │   ├── celery_app.py
-│   │   │   └── tasks/
-│   │   │       ├── download_tasks.py
-│   │   │       ├── image_tasks.py
-│   │   │       └── video_tasks.py
-│   │   │
-│   │   ├── models/
-│   │   │   ├── job.py
-│   │   │   └── user.py
-│   │   │
-│   │   ├── schemas/
-│   │   │   ├── download.py
-│   │   │   ├── image.py
-│   │   │   ├── video.py
-│   │   │   └── job.py
-│   │   │
-│   │   └── utils/
-│   │       ├── files.py
-│   │       ├── ffmpeg.py
-│   │       └── cleanup.py
-│   │
-│   ├── requirements.txt
-│   └── .env
+│ ├── app/
+│ │ ├── main.py
+│ │ │
+│ │ ├── core/
+│ │ │ ├── config.py
+│ │ │ ├── database.py
+│ │ │ └── security.py
+│ │ │
+│ │ ├── routers/
+│ │ │ ├── health.py
+│ │ │ ├── youtube.py
+│ │ │ ├── instagram.py
+│ │ │ ├── tiktok.py
+│ │ │ ├── image.py
+│ │ │ ├── video.py
+│ │ │ ├── audio.py
+│ │ │ └── jobs.py
+│ │ │
+│ │ ├── services/
+│ │ │ ├── youtube_service.py
+│ │ │ ├── instagram_service.py
+│ │ │ ├── tiktok_service.py
+│ │ │ ├── image_service.py
+│ │ │ ├── video_service.py
+│ │ │ └── audio_service.py
+│ │ │
+│ │ ├── workers/
+│ │ │ ├── celery_app.py
+│ │ │ └── tasks/
+│ │ │ ├── download_tasks.py
+│ │ │ ├── image_tasks.py
+│ │ │ └── video_tasks.py
+│ │ │
+│ │ ├── models/
+│ │ │ ├── job.py
+│ │ │ └── user.py
+│ │ │
+│ │ ├── schemas/
+│ │ │ ├── download.py
+│ │ │ ├── image.py
+│ │ │ ├── video.py
+│ │ │ └── job.py
+│ │ │
+│ │ └── utils/
+│ │ ├── files.py
+│ │ ├── ffmpeg.py
+│ │ └── cleanup.py
+│ │
+│ ├── requirements.txt
+│ └── .env
 │
 ├── storage/
-│   ├── uploads/
-│   ├── outputs/
-│   └── temp/
+│ ├── uploads/
+│ ├── outputs/
+│ └── temp/
 │
 ├── docker-compose.yml
 ├── .gitignore
@@ -200,67 +200,67 @@ Something like:
 from fastapi import FastAPI
 
 from app.routers import (
-    health,
-    youtube,
-    instagram,
-    tiktok,
-    image,
-    video,
-    audio,
-    jobs,
+health,
+youtube,
+instagram,
+tiktok,
+image,
+video,
+audio,
+jobs,
 )
 
 app = FastAPI(
-    title="ToolsHub API",
-    version="1.0.0",
+title="ToolsHub API",
+version="1.0.0",
 )
 
 app.include_router(
-    health.router,
-    prefix="/api/v1",
-    tags=["Health"],
+health.router,
+prefix="/api/v1",
+tags=["Health"],
 )
 
 app.include_router(
-    youtube.router,
-    prefix="/api/v1/youtube",
-    tags=["YouTube"],
+youtube.router,
+prefix="/api/v1/youtube",
+tags=["YouTube"],
 )
 
 app.include_router(
-    instagram.router,
-    prefix="/api/v1/instagram",
-    tags=["Instagram"],
+instagram.router,
+prefix="/api/v1/instagram",
+tags=["Instagram"],
 )
 
 app.include_router(
-    tiktok.router,
-    prefix="/api/v1/tiktok",
-    tags=["TikTok"],
+tiktok.router,
+prefix="/api/v1/tiktok",
+tags=["TikTok"],
 )
 
 app.include_router(
-    image.router,
-    prefix="/api/v1/image",
-    tags=["Image"],
+image.router,
+prefix="/api/v1/image",
+tags=["Image"],
 )
 
 app.include_router(
-    video.router,
-    prefix="/api/v1/video",
-    tags=["Video"],
+video.router,
+prefix="/api/v1/video",
+tags=["Video"],
 )
 
 app.include_router(
-    audio.router,
-    prefix="/api/v1/audio",
-    tags=["Audio"],
+audio.router,
+prefix="/api/v1/audio",
+tags=["Audio"],
 )
 
 app.include_router(
-    jobs.router,
-    prefix="/api/v1/jobs",
-    tags=["Jobs"],
+jobs.router,
+prefix="/api/v1/jobs",
+tags=["Jobs"],
 )
 
 Then you automatically get:
@@ -278,27 +278,27 @@ Your frontend can be:
 frontend/
 │
 ├── src/
-│   ├── components/
-│   │
-│   │   ├── ToolCard.tsx
-│   │   ├── ToolInput.tsx
-│   │   ├── FileUploader.tsx
-│   │   ├── ProgressBar.tsx
-│   │   ├── DownloadButton.tsx
-│   │   └── Navbar.tsx
-│   │
-│   ├── pages/
-│   │   ├── Home.tsx
-│   │   ├── Youtube.tsx
-│   │   ├── Instagram.tsx
-│   │   ├── TikTok.tsx
-│   │   ├── RemoveImageBg.tsx
-│   │   └── RemoveVideoBg.tsx
-│   │
-│   ├── services/
-│   │   └── api.ts
-│   │
-│   └── App.tsx
+│ ├── components/
+│ │
+│ │ ├── ToolCard.tsx
+│ │ ├── ToolInput.tsx
+│ │ ├── FileUploader.tsx
+│ │ ├── ProgressBar.tsx
+│ │ ├── DownloadButton.tsx
+│ │ └── Navbar.tsx
+│ │
+│ ├── pages/
+│ │ ├── Home.tsx
+│ │ ├── Youtube.tsx
+│ │ ├── Instagram.tsx
+│ │ ├── TikTok.tsx
+│ │ ├── RemoveImageBg.tsx
+│ │ └── RemoveVideoBg.tsx
+│ │
+│ ├── services/
+│ │ └── api.ts
+│ │
+│ └── App.tsx
 
 7. Don't make every tool completely independent
 
@@ -307,13 +307,13 @@ This is important.
 For example:
 
 Image tools
-       │
-       ├── Upload
-       ├── Validate
-       ├── Process
-       ├── Save
-       ├── Return result
-       └── Cleanup
+│
+├── Upload
+├── Validate
+├── Process
+├── Save
+├── Return result
+└── Cleanup
 
 Don't duplicate that logic five times.
 
@@ -340,31 +340,31 @@ This becomes very important once you process video.
 Don't do this:
 
 React
-  ↓
+↓
 FastAPI
-  ↓
+↓
 remove_background(video)
-  ↓
+↓
 wait 5 minutes
-  ↓
+↓
 response
 
 Instead:
 
 React
-  ↓
+↓
 FastAPI
-  ↓
+↓
 Create Job
-  ↓
+↓
 Redis
-  ↓
+↓
 Celery Worker
-  ↓
+↓
 Process video
-  ↓
+↓
 Update Job
-  ↓
+↓
 React checks job status
 
 Example:
@@ -374,8 +374,8 @@ POST /api/v1/video/remove-background
 returns immediately:
 
 {
-  "job_id": "8f92c...",
-  "status": "queued"
+"job_id": "8f92c...",
+"status": "queued"
 }
 
 Then React:
@@ -385,17 +385,17 @@ GET /api/v1/jobs/8f92c...
 gets:
 
 {
-  "job_id": "8f92c...",
-  "status": "processing",
-  "progress": 64
+"job_id": "8f92c...",
+"status": "processing",
+"progress": 64
 }
 
 Finally:
 
 {
-  "job_id": "8f92c...",
-  "status": "completed",
-  "download_url": "/downloads/abc.mp4"
+"job_id": "8f92c...",
+"status": "completed",
+"download_url": "/downloads/abc.mp4"
 }
 
 That's the architecture I'd use for ToolsHub.
@@ -435,15 +435,15 @@ Step 5
 Only after that:
 
 Image compressor
-       ↓
+↓
 Image converter
-       ↓
+↓
 Video converter
-       ↓
+↓
 Audio converter
-       ↓
+↓
 URL-based media tools
-       ↓
+↓
 Video background removal
 
 This gives the AI a stable architecture to work inside.
@@ -465,18 +465,21 @@ at the root:
 ToolsHub is a media utility platform.
 
 Frontend:
+
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
 
 Backend:
+
 - Python
 - FastAPI
 - Pydantic
 - SQLAlchemy
 
 Infrastructure:
+
 - PostgreSQL
 - Redis
 - Celery
@@ -491,17 +494,20 @@ FastAPI must use APIRouter.
 Never put business logic directly inside routers.
 
 Routers handle:
+
 - Request validation
 - Authentication
 - Calling services
 - Returning responses
 
 Services handle:
+
 - Business logic
 - Media processing
 - External integrations
 
 Workers handle:
+
 - Long-running jobs
 - Video processing
 - Large media operations
@@ -537,6 +543,7 @@ AI processing should be isolated inside service modules.
 ## Security
 
 Validate:
+
 - File type
 - File size
 - URL format

@@ -1,4 +1,4 @@
-export type ToolCategory = "download" | "image" | "video" | "audio";
+export type ToolCategory = "download" | "image" | "video" | "audio" | "utility";
 
 export type ToolStatus = "live" | "soon";
 

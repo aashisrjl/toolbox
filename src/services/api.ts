@@ -1,8 +1,8 @@
 import type { Job } from "@/types/tool";
 
-/** Base URL of the ToolsHub FastAPI backend. */
+/** Base URL of the Toolbox FastAPI backend. */
 export const API_BASE_URL =
-  (import.meta.env['VITE_API_BASE_URL'] as string | undefined)?.replace(/\/$/, "") ??
+  (import.meta.env["VITE_API_BASE_URL"] as string | undefined)?.replace(/\/$/, "") ??
   "http://localhost:8000";
 
 export const API_PREFIX = "/api/v1";
@@ -15,19 +15,30 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE_URL}${API_PREFIX}${path}`, init);
   } catch {
     throw new ApiError(
-      "Can't reach the ToolsHub API. Start the backend or set VITE_API_BASE_URL.",
+      "Can't reach the Toolbox API. Start the backend or set VITE_API_BASE_URL.",
       0,
     );
   }
   if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new ApiError(text || `Request failed with status ${res.status}`, res.status);
+    let message = `Request failed with status ${res.status}`;
+    try {
+      const data = await res.json();
+      if (data?.error) {
+        message = data.error;
+      } else if (data?.detail) {
+        message = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail);
+      }
+    } catch {
+      const text = await res.text().catch(() => "");
+      if (text) message = text;
+    }
+    throw new ApiError(message, res.status);
   }
   return (await res.json()) as T;
 }
@@ -44,12 +55,31 @@ export function submitFileJob(
   return request<Job>(endpoint, { method: "POST", body: form });
 }
 
+/** Uploads multiple files to a processing endpoint and returns the created job. */
+export function submitMultiFileJob(
+  endpoint: string,
+  files: File[],
+  fieldName = "files",
+  options: Record<string, string> = {},
+): Promise<Job> {
+  const form = new FormData();
+  for (const file of files) {
+    form.append(fieldName, file);
+  }
+  for (const [key, value] of Object.entries(options)) form.append(key, value);
+  return request<Job>(endpoint, { method: "POST", body: form });
+}
+
 /** Submits a URL-based job (downloaders). */
-export function submitUrlJob(endpoint: string, url: string): Promise<Job> {
+export function submitUrlJob(
+  endpoint: string,
+  url: string,
+  extra: Record<string, unknown> = {},
+): Promise<Job> {
   return request<Job>(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url }),
+    body: JSON.stringify({ url, ...extra }),
   });
 }
 

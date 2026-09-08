@@ -30,7 +30,7 @@ export const IMAGE_TOOL_CONFIGS: Record<string, ImageToolFormProps> = {
       },
     ],
     submit: (file, v) =>
-      compressImage(file, { quality: v['quality'] ?? "75", format: v['format'] ?? "auto" }),
+      compressImage(file, { quality: v["quality"] ?? "75", format: v["format"] ?? "auto" }),
   },
 
   "convert-image": {
@@ -38,7 +38,7 @@ export const IMAGE_TOOL_CONFIGS: Record<string, ImageToolFormProps> = {
     runningLabel: "Converting",
     defaults: { format: "webp" },
     fields: [{ kind: "select", name: "format", label: "Convert to", options: FORMATS }],
-    submit: (file, v) => convertImage(file, { format: v['format'] ?? "webp" }),
+    submit: (file, v) => convertImage(file, { format: v["format"] ?? "webp" }),
   },
 
   "resize-image": {
@@ -60,8 +60,8 @@ export const IMAGE_TOOL_CONFIGS: Record<string, ImageToolFormProps> = {
       { kind: "number", name: "height", label: "Height (px)", min: 1, max: 10000 },
     ],
     validate: (v) => {
-      const w = Number(v['width']);
-      const h = Number(v['height']);
+      const w = Number(v["width"]);
+      const h = Number(v["height"]);
       if (!Number.isFinite(w) || w < 1 || !Number.isFinite(h) || h < 1) {
         return "Enter a width and height of at least 1 pixel.";
       }
@@ -70,10 +70,10 @@ export const IMAGE_TOOL_CONFIGS: Record<string, ImageToolFormProps> = {
     },
     submit: (file, v) =>
       resizeImage(file, {
-        mode: v['mode'] ?? "resize",
-        width: v['width'] ?? "",
-        height: v['height'] ?? "",
-        keep_aspect: v['keep_aspect'] ?? "true",
+        mode: v["mode"] ?? "resize",
+        width: v["width"] ?? "",
+        height: v["height"] ?? "",
+        keep_aspect: v["keep_aspect"] ?? "true",
       }),
   },
 };
