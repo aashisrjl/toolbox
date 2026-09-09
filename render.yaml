@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: toolbox-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: STORAGE_DIR
+        value: /tmp/toolbox/storage
+      - key: MAX_FILE_SIZE_MB
+        value: 50
+      - key: FILE_TTL_HOURS
+        value: 1

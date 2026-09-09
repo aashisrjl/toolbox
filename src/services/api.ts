@@ -1,9 +1,12 @@
 import type { Job } from "@/types/tool";
 
-/** Base URL of the Toolbox FastAPI backend. */
-export const API_BASE_URL =
-  (import.meta.env["VITE_API_BASE_URL"] as string | undefined)?.replace(/\/$/, "") ??
+const rawBaseUrl =
+  (import.meta.env["VITE_API_BASE_URL"] as string | undefined)?.trim().replace(/\/+$/, "") ??
   "http://localhost:8000";
+
+export const API_BASE_URL = rawBaseUrl.endsWith("/api/v1")
+  ? rawBaseUrl.slice(0, -"/api/v1".length)
+  : rawBaseUrl;
 
 export const API_PREFIX = "/api/v1";
 
