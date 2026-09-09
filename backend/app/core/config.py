@@ -1,7 +1,7 @@
 import json
 import os
 from pathlib import Path
-from typing import List, Union
+from typing import List, Union, Optional
 from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -53,6 +53,10 @@ class Settings(BaseSettings):
 
     # Base URL for public links (if reverse-proxied or custom host)
     BASE_URL: str = "http://localhost:8000"
+
+    # YouTube / yt-dlp options
+    YTDLP_COOKIES_FILE: Optional[str] = None
+    YTDLP_COOKIES_FROM_BROWSER: Optional[str] = None
 
     model_config = SettingsConfigDict(
         env_file=".env",
